@@ -37,6 +37,9 @@ class handler(BaseHTTPRequestHandler):
                 return
             
             post_data = self.rfile.read(content_length)
+        except Exception as e:
+            self.send_error(400, f"Invalid Request: {e}")
+            return
         
         try:
             request_data = json.loads(post_data.decode('utf-8'))
