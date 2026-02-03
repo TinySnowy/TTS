@@ -11,9 +11,26 @@ ACCESS_TOKEN = os.environ.get("BYTEPLUS_ACCESS_TOKEN")
 RESOURCE_ID = os.environ.get("BYTEPLUS_RESOURCE_ID")
 
 class handler(BaseHTTPRequestHandler):
+    def do_OPTIONS(self):
+        self.send_response(200)
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type')
+        self.end_headers()
+
     def do_POST(self):
-        content_length = int(self.headers['Content-Length'])
-        post_data = self.rfile.read(content_length)
+        # Check environment variables
+        if not APP_ID or not ACCESS_TOKEN or not RESOURCE_ID:
+            self.send_error(500, "Missing Environment Variables (APP_ID, ACCESS_TOKEN, RESOURCE_ID)")
+            return
+
+        try:
+            content_length = int(self.headers.get('Content-Length', 0))
+            if content_length == 0:
+                self.send_error(400, "Missing Content-Length")
+                return
+            
+            post_data = self.rfile.read(content_length)
         
         try:
             request_data = json.loads(post_data.decode('utf-8'))
@@ -124,5 +141,9 @@ class handler(BaseHTTPRequestHandler):
 
         except Exception as e:
             print(f"Error during proxy: {e}")
-            # If headers weren't sent, we could send 500. 
-            # If they were, the stream just breaks.
+            # If headers haven't been sent yet, send 500
+            try:
+                self.send_error(500, f"Internal Server Error: {str(e)}")
+            except:
+                # Headers might have been sent already
+                pass
