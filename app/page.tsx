@@ -16,6 +16,9 @@ export default function Home() {
   const [text, setText] = useState<string>("");
   const [speed, setSpeed] = useState<number>(1.0);
   const [pitch, setPitch] = useState<number>(1.0);
+  const [emotion, setEmotion] = useState<string>("neutral");
+  const [emotionIntensity, setEmotionIntensity] = useState<number>(4.0);
+  const [loudness, setLoudness] = useState<number>(1.0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [duration, setDuration] = useState<number>(0);
@@ -49,7 +52,7 @@ export default function Home() {
   const queueRef = useRef<Uint8Array[]>([]);
 
   const formatTime = (time: number) => {
-    if (isNaN(time)) return "0:00";
+    if (!Number.isFinite(time) || isNaN(time)) return "--:--";
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
@@ -137,6 +140,9 @@ export default function Home() {
                   voice_id: selectedVoice,
                   speed,
                   pitch,
+                  loudness,
+                  emotion,
+                  emotion_intensity: emotionIntensity,
                   language: selectedLang,
                 }),
             });
@@ -285,6 +291,63 @@ export default function Home() {
                     className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500"
                   />
                 </div>
+
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <label className="text-sm font-medium text-slate-400">Loudness</label>
+                    <span className="text-sm text-indigo-400 font-mono">{loudness}x</span>
+                  </div>
+                  <input 
+                    type="range" 
+                    min="0.5" 
+                    max="2.0" 
+                    step="0.1" 
+                    value={loudness}
+                    onChange={(e) => setLoudness(parseFloat(e.target.value))}
+                    className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-slate-400">Emotion</label>
+                  <div className="relative">
+                    <select 
+                        className="w-full p-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none appearance-none transition-all"
+                        value={emotion}
+                        onChange={(e) => setEmotion(e.target.value)}
+                    >
+                        <option value="neutral">Neutral</option>
+                        <option value="happy">Happy</option>
+                        <option value="sad">Sad</option>
+                        <option value="angry">Angry</option>
+                        <option value="scared">Fear</option>
+                        <option value="disgust">Disgust</option>
+                        <option value="surprise">Surprise</option>
+                    </select>
+                    <div className="absolute right-3 top-3.5 pointer-events-none text-slate-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <label className="text-sm font-medium text-slate-400">Emotion Intensity</label>
+                    <span className="text-sm text-indigo-400 font-mono">{emotionIntensity}</span>
+                  </div>
+                  <input 
+                    type="range" 
+                    min="1.0" 
+                    max="5.0" 
+                    step="0.1" 
+                    value={emotionIntensity}
+                    onChange={(e) => setEmotionIntensity(parseFloat(e.target.value))}
+                    disabled={emotion === 'neutral'}
+                    className={`w-full h-2 rounded-lg appearance-none cursor-pointer ${emotion === 'neutral' ? 'bg-slate-800 accent-slate-600' : 'bg-slate-700 accent-indigo-500'}`}
+                  />
+                </div>
             </div>
             
             <div className="space-y-2">
@@ -388,12 +451,12 @@ export default function Home() {
                         <input
                             type="range"
                             min="0"
-                            max={duration || 100}
+                            max={Number.isFinite(duration) ? duration : 100}
                             value={currentTime}
                             onChange={handleSeek}
                             className="w-full h-1.5 bg-slate-700 rounded-full appearance-none cursor-pointer accent-indigo-500 hover:accent-indigo-400"
                             style={{
-                                background: `linear-gradient(to right, #6366f1 ${(currentTime / (duration || 1)) * 100}%, #334155 ${(currentTime / (duration || 1)) * 100}%)`
+                                background: `linear-gradient(to right, #6366f1 ${(currentTime / (Number.isFinite(duration) && duration > 0 ? duration : 100)) * 100}%, #334155 ${(currentTime / (Number.isFinite(duration) && duration > 0 ? duration : 100)) * 100}%)`
                             }}
                         />
                     </div>

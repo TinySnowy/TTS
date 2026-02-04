@@ -40,6 +40,9 @@ class TTSRequest(BaseModel):
     voice_id: str = "zh_female_cancan_mars_bigtts"
     speed: float = 1.0
     pitch: float = 1.0
+    loudness: float = 1.0
+    emotion: Optional[str] = None
+    emotion_intensity: float = 4.0
     language: str = "zh"
 
 @app.get("/api/get_voices")
@@ -98,10 +101,15 @@ async def tts(request: TTSRequest):
                 "format": "mp3",
                 "sample_rate": 24000,
                 "speech_rate": int((request.speed - 1.0) * 100), # Convert 0.5-2.0 to -50 to 100
-                "pitch_rate": int((request.pitch - 1.0) * 100)   # Convert 0.5-2.0 to -50 to 100
+                "pitch_rate": int((request.pitch - 1.0) * 100),   # Convert 0.5-2.0 to -50 to 100
+                "loudness_rate": int((request.loudness - 1.0) * 100), # Convert 0.5-2.0 to -50 to 100
             }
         }
     }
+
+    if request.emotion and request.emotion != "neutral":
+        payload["req_params"]["audio_params"]["emotion"] = request.emotion
+        payload["req_params"]["audio_params"]["emotion_scale"] = request.emotion_intensity
 
     def generate():
         session = requests.Session()
