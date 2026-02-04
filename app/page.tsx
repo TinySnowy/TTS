@@ -393,9 +393,6 @@ export default function Home() {
                         <option value="happy">Happy</option>
                         <option value="sad">Sad</option>
                         <option value="angry">Angry</option>
-                        <option value="scared">Fear</option>
-                        <option value="disgust">Disgust</option>
-                        <option value="surprise">Surprise</option>
                     </select>
                     <div className="absolute right-3 top-3.5 pointer-events-none text-slate-500">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
