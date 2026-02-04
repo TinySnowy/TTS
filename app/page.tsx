@@ -332,6 +332,7 @@ export default function Home() {
                   </div>
                 </div>
 
+                {emotion !== 'neutral' && (
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <label className="text-sm font-medium text-slate-400">Emotion Intensity</label>
@@ -344,10 +345,10 @@ export default function Home() {
                     step="0.1" 
                     value={emotionIntensity}
                     onChange={(e) => setEmotionIntensity(parseFloat(e.target.value))}
-                    disabled={emotion === 'neutral'}
-                    className={`w-full h-2 rounded-lg appearance-none cursor-pointer ${emotion === 'neutral' ? 'bg-slate-800 accent-slate-600' : 'bg-slate-700 accent-indigo-500'}`}
+                    className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500"
                   />
                 </div>
+                )}
             </div>
             
             <div className="space-y-2">
