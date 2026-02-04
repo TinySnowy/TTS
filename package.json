@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "dev:backend": "uv run python dev_server.py",
+    "dev:backend": "uv run uvicorn api.index:app --reload --port 8000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
