@@ -141,6 +141,15 @@ export default function Home() {
                 }),
             });
 
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error("API Error:", response.status, errorText);
+                alert(`TTS Error (${response.status}): ${errorText}`);
+                setIsLoading(false);
+                setIsPlaying(false);
+                return;
+            }
+
             if (!response.body) return;
             const reader = response.body.getReader();
 
