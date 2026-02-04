@@ -44,6 +44,11 @@ export default function Home() {
   }, []);
 
   const filteredVoices = voices.filter((v) => v.lang === selectedLang);
+  const emotionVoices = filteredVoices.filter(v => v.name.includes('Emotion'));
+  const standardVoices = filteredVoices.filter(v => !v.name.includes('Emotion'));
+
+  const currentVoice = voices.find(v => v.id === selectedVoice);
+  const isEmotionSupported = currentVoice ? currentVoice.name.includes('Emotion') : false;
 
   // Re-implementing with MediaSource Extensions (MSE) for robust streaming
   const mediaSourceRef = useRef<MediaSource | null>(null);
@@ -246,11 +251,24 @@ export default function Home() {
                         value={selectedVoice}
                         onChange={(e) => setSelectedVoice(e.target.value)}
                     >
-                        {filteredVoices.map((voice) => (
-                            <option key={voice.id} value={voice.id}>
-                                {voice.name}
-                            </option>
-                        ))}
+                        {emotionVoices.length > 0 && (
+                            <optgroup label="Emotion Capable Voices">
+                                {emotionVoices.map((voice) => (
+                                    <option key={voice.id} value={voice.id}>
+                                        {voice.name}
+                                    </option>
+                                ))}
+                            </optgroup>
+                        )}
+                        {standardVoices.length > 0 && (
+                            <optgroup label="Standard Voices">
+                                {standardVoices.map((voice) => (
+                                    <option key={voice.id} value={voice.id}>
+                                        {voice.name}
+                                    </option>
+                                ))}
+                            </optgroup>
+                        )}
                     </select>
                      <div className="absolute right-3 top-3.5 pointer-events-none text-slate-500">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
@@ -309,10 +327,14 @@ export default function Home() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-400">Emotion</label>
+                  <div className="flex justify-between items-center">
+                    <label className={`text-sm font-medium ${isEmotionSupported ? 'text-slate-400' : 'text-slate-600'}`}>Emotion</label>
+                    {!isEmotionSupported && <span className="text-xs text-amber-500/80 font-mono">Not supported for this voice</span>}
+                  </div>
                   <div className="relative">
                     <select 
-                        className="w-full p-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none appearance-none transition-all"
+                        disabled={!isEmotionSupported}
+                        className={`w-full p-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none appearance-none transition-all ${!isEmotionSupported ? 'opacity-50 cursor-not-allowed' : ''}`}
                         value={emotion}
                         onChange={(e) => setEmotion(e.target.value)}
                     >
