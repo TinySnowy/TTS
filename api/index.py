@@ -91,17 +91,32 @@ async def tts(request: TTSRequest):
         }
     }
 
+    # Calculate pitch value for additions.post_process.pitch (range -12 to 12)
+    # Mapping request.pitch (0.5 to 2.0) to (-12 to 12)
+    if request.pitch < 1.0:
+        pitch_val = int((request.pitch - 1.0) * 24)
+    else:
+        pitch_val = int((request.pitch - 1.0) * 12)
+    
+    # Clamp value to be safe
+    pitch_val = max(-12, min(12, pitch_val))
+    
+    if pitch_val != 0:
+        additions["post_process"] = {
+            "pitch": pitch_val
+        }
+
     payload = {
         "user": {"uid": "12345"}, # Arbitrary UID
         "req_params": {
             "text": request.text,
             "speaker": request.voice_id,
+            "model": "seed-tts-1.1", # Use 1.1 model for better quality
             "additions": json.dumps(additions),
             "audio_params": {
                 "format": "mp3",
                 "sample_rate": 24000,
                 "speech_rate": int((request.speed - 1.0) * 100), # Convert 0.5-2.0 to -50 to 100
-                "pitch_rate": int((request.pitch - 1.0) * 100),   # Convert 0.5-2.0 to -50 to 100
                 "loudness_rate": int((request.loudness - 1.0) * 100), # Convert 0.5-2.0 to -50 to 100
             }
         }
@@ -110,6 +125,9 @@ async def tts(request: TTSRequest):
     if request.emotion and request.emotion != "neutral":
         payload["req_params"]["audio_params"]["emotion"] = request.emotion
         payload["req_params"]["audio_params"]["emotion_scale"] = request.emotion_intensity
+
+    # Debug: Print payload to verify parameters
+    print(f"Sending Payload to BytePlus: {json.dumps(payload, ensure_ascii=False)}")
 
     def generate():
         session = requests.Session()

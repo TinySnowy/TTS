@@ -1,6 +1,110 @@
 # Voice ID to Display Name Mapping
 VOICES = [
-    # Chinese Voices
+    # --- English Voices ---
+    # American English
+    {"id": "en_female_candice_emo_v2_mars_bigtts", "name": "Candice (Warm - Emotion)", "lang": "en", "gender": "Female"},
+    {"id": "en_female_skye_emo_v2_mars_bigtts", "name": "Serena (Vivid - Emotion)", "lang": "en", "gender": "Female"},
+    {"id": "en_male_glen_emo_v2_mars_bigtts", "name": "Glen (Clear - Emotion)", "lang": "en", "gender": "Male"},
+    {"id": "en_male_sylus_emo_v2_mars_bigtts", "name": "Sylus (Deep - Emotion)", "lang": "en", "gender": "Male"},
+    {"id": "en_female_lauren_moon_bigtts", "name": "Lauren (Vivid)", "lang": "en", "gender": "Female"},
+    {"id": "en_male_campaign_jamal_moon_bigtts", "name": "Energetic Male II (Clear)", "lang": "en", "gender": "Male"},
+    {"id": "en_male_chris_moon_bigtts", "name": "Gotham Hero (Deep)", "lang": "en", "gender": "Male"},
+    {"id": "en_female_product_darcie_moon_bigtts", "name": "Flirty Female (Warm)", "lang": "en", "gender": "Female"},
+    {"id": "en_female_emotional_moon_bigtts", "name": "Peaceful Female (Sweet)", "lang": "en", "gender": "Female"},
+    {"id": "en_female_nara_moon_bigtts", "name": "Nara (Deep)", "lang": "en", "gender": "Female"},
+    {"id": "en_male_bruce_moon_bigtts", "name": "Bruce (Deep)", "lang": "en", "gender": "Male"},
+    {"id": "en_male_michael_moon_bigtts", "name": "Michael (Elegant)", "lang": "en", "gender": "Male"},
+    {"id": "ICL_en_male_cc_sha_v1_tob", "name": "Cartoon Chef (Deep)", "lang": "en", "gender": "Male"},
+    {"id": "zh_male_M100_conversation_wvae_bigtts", "name": "Lucas (Elegant)", "lang": "en", "gender": "Male"},
+    {"id": "zh_female_sophie_conversation_wvae_bigtts", "name": "Sophie (Warm)", "lang": "en", "gender": "Female"},
+    {"id": "en_female_dacey_conversation_wvae_bigtts", "name": "Daisy (Clear)", "lang": "en", "gender": "Female"},
+    {"id": "en_male_charlie_conversation_wvae_bigtts", "name": "Owen (Deep)", "lang": "en", "gender": "Male"},
+    {"id": "en_female_sarah_new_conversation_wvae_bigtts", "name": "Luna (Elegant)", "lang": "en", "gender": "Female"},
+    {"id": "ICL_en_male_michael_tob", "name": "Michael (Soft)", "lang": "en", "gender": "Male"},
+    {"id": "ICL_en_female_cc_cm_v1_tob", "name": "Charlie (Vivid)", "lang": "en", "gender": "Female"},
+    {"id": "ICL_en_male_oogie2_tob", "name": "Big Boogie (Deep)", "lang": "en", "gender": "Male"},
+    {"id": "ICL_en_male_frosty1_tob", "name": "Frosty Man (Deep)", "lang": "en", "gender": "Male"},
+    {"id": "ICL_en_male_grinch2_tob", "name": "The Grinch (Deep)", "lang": "en", "gender": "Male"},
+    {"id": "ICL_en_male_zayne_tob", "name": "Zayne (Clear)", "lang": "en", "gender": "Male"},
+    {"id": "ICL_en_male_cc_jigsaw_tob", "name": "Jigsaw (Deep)", "lang": "en", "gender": "Male"},
+    {"id": "ICL_en_male_cc_chucky_tob", "name": "Chucky (Clear)", "lang": "en", "gender": "Male"},
+    {"id": "ICL_en_male_cc_penny_v1_tob", "name": "Clown Man (Deep)", "lang": "en", "gender": "Male"},
+    {"id": "ICL_en_male_kevin2_tob", "name": "Kevin McCallister (Clear)", "lang": "en", "gender": "Male"},
+    {"id": "ICL_en_male_xavier1_v1_tob", "name": "Xavier (Mature)", "lang": "en", "gender": "Male"},
+    {"id": "ICL_en_male_cc_dracula_v1_tob", "name": "Noah (Mature)", "lang": "en", "gender": "Male"},
+    {"id": "en_male_adam_mars_bigtts", "name": "Adam (Clear)", "lang": "en", "gender": "Male"},
+
+    # British English
+    {"id": "en_male_corey_emo_v2_mars_bigtts", "name": "Corey (Clear - Emotion)", "lang": "en", "gender": "Male"},
+    {"id": "en_female_nadia_tips_emo_v2_mars_bigtts", "name": "Nadia (Sweet - Emotion)", "lang": "en", "gender": "Female"},
+    {"id": "en_female_daisy_moon_bigtts", "name": "Delicate Girl (Clear)", "lang": "en", "gender": "Female"},
+    {"id": "en_male_dave_moon_bigtts", "name": "Dave (Deep)", "lang": "en", "gender": "Male"},
+    {"id": "en_male_hades_moon_bigtts", "name": "Hades (Deep)", "lang": "en", "gender": "Male"},
+    {"id": "en_female_onez_moon_bigtts", "name": "Onez (Soft)", "lang": "en", "gender": "Female"},
+    {"id": "en_female_emily_mars_bigtts", "name": "Emily (Soft)", "lang": "en", "gender": "Female"},
+    {"id": "zh_male_xudong_conversation_wvae_bigtts", "name": "Daniel (Deep)", "lang": "en", "gender": "Male"},
+    {"id": "ICL_en_male_cc_alastor_tob", "name": "Alastor (Vivid)", "lang": "en", "gender": "Male"},
+    {"id": "en_male_smith_mars_bigtts", "name": "Smith (Deep)", "lang": "en", "gender": "Male"},
+
+    # Australian English
+    {"id": "ICL_en_male_aussie_v1_tob", "name": "Ethan (Warm)", "lang": "en", "gender": "Male"},
+    {"id": "en_female_sarah_mars_bigtts", "name": "Sarah (Soft)", "lang": "en", "gender": "Female"},
+    {"id": "en_male_dryw_mars_bigtts", "name": "Dryw (Deep)", "lang": "en", "gender": "Male"},
+
+    # --- Chinese Voices ---
+    # Emotion / Special
+    {"id": "zh_female_tianxinxiaomei_emo_v2_mars_bigtts", "name": "甜心小美 (Sweet - Emotion)", "lang": "zh", "gender": "Female"},
+    {"id": "zh_female_gaolengyujie_emo_v2_mars_bigtts", "name": "高冷御姐 (Mature - Emotion)", "lang": "zh", "gender": "Female"},
+    {"id": "zh_male_aojiaobazong_emo_v2_mars_bigtts", "name": "傲娇霸总 (Deep - Emotion)", "lang": "zh", "gender": "Male"},
+    {"id": "zh_male_guangzhoudege_emo_mars_bigtts", "name": "广州德哥 (Elegant - Emotion)", "lang": "zh", "gender": "Male"},
+    {"id": "zh_male_jingqiangkanye_emo_mars_bigtts", "name": "京腔侃爷 (Deep - Emotion)", "lang": "zh", "gender": "Male"},
+    {"id": "zh_female_linjuayi_emo_v2_mars_bigtts", "name": "邻居阿姨 (Soft - Emotion)", "lang": "zh", "gender": "Female"},
+    {"id": "zh_female_shuangkuaisisi_emo_v2_mars_bigtts", "name": "Elena (Vivid - Emotion)", "lang": "zh", "gender": "Female"},
+
+    # Flirt / Roleplay
+    {"id": "zh_female_jiaochuan_mars_bigtts", "name": "娇喘女声 (Sweet)", "lang": "zh", "gender": "Female"},
+    {"id": "zh_female_flattery_mars_bigtts", "name": "谄媚女声 (Vivid)", "lang": "zh", "gender": "Female"},
+    {"id": "ICL_zh_female_chunzhenshaonv_e588402fb8ad_tob", "name": "纯真少女 (Mature)", "lang": "zh", "gender": "Female"},
+    {"id": "ICL_zh_female_ganli_v1_tob", "name": "妩媚可人 (Sexy)", "lang": "zh", "gender": "Female"},
+    {"id": "ICL_zh_female_xiangliangya_v1_tob", "name": "邪魅御姐 (Sexy)", "lang": "zh", "gender": "Female"},
+    {"id": "ICL_zh_male_guaogongzi_v1_tob", "name": "孤傲公子 (Clear)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_female_bingjiao3_tob", "name": "邪魅女王 (Charming)", "lang": "zh", "gender": "Female"},
+    {"id": "ICL_zh_male_cujingnanyou_tob", "name": "醋精男友 (Clear)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_shuanglangshaonian_tob", "name": "爽朗少年 (Deep)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_sajiaonanyou_tob", "name": "撒娇男友 (Clear)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_wenrounanyou_tob", "name": "温柔男友 (Deep)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_wenshunshaonian_tob", "name": "温顺少年 (Warm)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_tiancaitongzhuo_tob", "name": "天才同桌 (Clear)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_aojiaojingying_tob", "name": "傲娇精英 (Deep)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_bingjiaoshaonian_tob", "name": "病娇少年 (Scheming)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_jingyingqingnian_tob", "name": "精英青年 (Mature)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_fengfashaonian_tob", "name": "风发少年 (Clear)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_rexueshaonian_tob", "name": "热血少年 (Clear)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_lingyunqingnian_tob", "name": "凌云青年 (Deep)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_ruyajunzi_tob", "name": "儒雅君子 (Soft)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_ruyazongcai_tob", "name": "儒雅总裁 (Deep)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_cixingnansang_tob", "name": "磁性男嗓 (Elegant)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_gaolengzongcai_tob", "name": "高冷总裁 (Deep)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_yuanqishaonian_tob", "name": "元气少年 (Clear)", "lang": "zh", "gender": "Male"},
+    {"id": "zh_female_meilinvyou_moon_bigtts", "name": "魅力女友 (Sweet)", "lang": "zh", "gender": "Female"},
+    {"id": "zh_male_shenyeboke_moon_bigtts", "name": "深夜播客 (Deep)", "lang": "zh", "gender": "Male"},
+    {"id": "zh_female_sajiaonvyou_moon_bigtts", "name": "柔美女友 (Sweet)", "lang": "zh", "gender": "Female"},
+    {"id": "zh_female_yuanqinvyou_moon_bigtts", "name": "撒娇学妹 (Sweet)", "lang": "zh", "gender": "Female"},
+    {"id": "ICL_zh_female_bingruoshaonv_tob", "name": "病弱少女 (Sweet)", "lang": "zh", "gender": "Female"},
+    {"id": "ICL_zh_female_jiaoruoluoli_tob", "name": "娇弱萝莉 (Sweet)", "lang": "zh", "gender": "Female"},
+    {"id": "ICL_zh_male_guzhibingjiao_tob", "name": "固执病娇 (Scheming)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_sajiaonianren_tob", "name": "撒娇粘人 (Soft)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_bingjiaobailian_tob", "name": "病娇白莲 (Scheming)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_female_bingjiaomengmei_tob", "name": "病娇萌妹 (Sexy)", "lang": "zh", "gender": "Female"},
+    {"id": "ICL_zh_female_aojiaonvyou_tob", "name": "傲娇女友 (Scheming)", "lang": "zh", "gender": "Female"},
+    {"id": "ICL_zh_male_tiexinnanyou_tob", "name": "贴心男友 (Soft)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_female_tiexinnvyou_tob", "name": "贴心女友 (Warm)", "lang": "zh", "gender": "Female"},
+    {"id": "ICL_zh_male_bingjiaodidi_tob", "name": "病娇弟弟 (Scheming)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_aomanshaoye_tob", "name": "傲慢少爷 (Deep)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_asmryexiu_tob", "name": "枕边低语 (Warm)", "lang": "zh", "gender": "Male"},
+    {"id": "ICL_zh_male_shenmifashi_tob", "name": "神秘法师 (Deep)", "lang": "zh", "gender": "Male"},
+
+    # Standard / General
     {"id": "zh_female_wanwanxiaohe_moon_bigtts", "name": "Isabella (Taiwanese - Vivid)", "lang": "zh", "gender": "Female"},
     {"id": "zh_male_guozhoudege_moon_bigtts", "name": "Andrew (Cantonese - Clear)", "lang": "zh", "gender": "Male"},
     {"id": "zh_female_gaolengyujie_moon_bigtts", "name": "Charlotte (Clear)", "lang": "zh", "gender": "Female"},
@@ -25,24 +129,24 @@ VOICES = [
     {"id": "zh_female_cancan_mars_bigtts", "name": "Luna (General - Clear)", "lang": "zh", "gender": "Female"},
     {"id": "zh_female_qingxinnvsheng_mars_bigtts", "name": "Olivia (General - Clear)", "lang": "zh", "gender": "Female"},
     {"id": "zh_female_linjia_mars_bigtts", "name": "Lily (General - Vivid)", "lang": "zh", "gender": "Female"},
+    {"id": "zh_male_zhoujielun_emo_v2_mars_bigtts", "name": "双节棍小哥 (Deep)", "lang": "zh", "gender": "Male"},
+    {"id": "zh_female_yueyunv_mars_bigtts", "name": "温柔粤语 (Warm)", "lang": "zh", "gender": "Female"},
 
-    # English Voices
-    {"id": "en_female_anna_mars_bigtts", "name": "Anna (Soft)", "lang": "en", "gender": "Female"},
-    {"id": "en_male_adam_mars_bigtts", "name": "Adam (American - Clear)", "lang": "en", "gender": "Male"},
-    {"id": "en_female_sarah_mars_bigtts", "name": "Sarah (Australian - Soft)", "lang": "en", "gender": "Female"},
-    {"id": "en_male_dryw_mars_bigtts", "name": "Dryw (Australian - Deep)", "lang": "en", "gender": "Male"},
-    {"id": "en_male_smith_mars_bigtts", "name": "Smith (British - Deep)", "lang": "en", "gender": "Male"},
-
-    # Japanese Voices
+    # --- Japanese Voices ---
     {"id": "multi_male_jingqiangkanye_moon_bigtts", "name": "Kazune (Fun)", "lang": "ja", "gender": "Male"},
     {"id": "multi_female_shuangkuaisisi_moon_bigtts", "name": "Haruko (Vivid)", "lang": "ja", "gender": "Female"},
     {"id": "multi_female_gaolengyujie_moon_bigtts", "name": "Akemi (Clear)", "lang": "ja", "gender": "Female"},
     {"id": "multi_male_wanqudashu_moon_bigtts", "name": "Hiroshi (Fun)", "lang": "ja", "gender": "Male"},
-    
-    # Spanish Voices
-     {"id": "multi_male_jingqiangkanye_moon_bigtts", "name": "Mateo (Fun)", "lang": "es", "gender": "Male"},
+    {"id": "multi_female_sophie_conversation_wvae_bigtts", "name": "Satomi (Soft)", "lang": "ja", "gender": "Female"},
+    {"id": "multi_male_xudong_conversation_wvae_bigtts", "name": "Masao (Deep)", "lang": "ja", "gender": "Male"},
+    {"id": "multi_female_maomao_conversation_wvae_bigtts", "name": "Tsuki (Clear)", "lang": "ja", "gender": "Female"},
+    {"id": "multi_zh_male_youyoujunzi_moon_bigtts", "name": "Hikaru (Clear)", "lang": "ja", "gender": "Male"},
+
+    # --- Spanish Voices ---
+    {"id": "multi_male_jingqiangkanye_moon_bigtts", "name": "Mateo (Fun)", "lang": "es", "gender": "Male"},
     {"id": "multi_female_shuangkuaisisi_moon_bigtts", "name": "Isabella (Vivid)", "lang": "es", "gender": "Female"},
     {"id": "multi_male_wanqudashu_moon_bigtts", "name": "Alejandro (Fun)", "lang": "es", "gender": "Male"},
+    {"id": "multi_male_M100_conversation_wvae_bigtts", "name": "Lucia (Deep)", "lang": "es", "gender": "Male"},
 ]
 
 def get_voice_by_id(voice_id):
