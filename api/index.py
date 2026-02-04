@@ -44,6 +44,9 @@ class TTSRequest(BaseModel):
     emotion: Optional[str] = None
     emotion_intensity: float = 4.0
     language: str = "zh"
+    app_id: str
+    access_token: str
+    resource_id: str
 
 @app.get("/api/get_voices")
 async def get_voices():
@@ -55,14 +58,11 @@ async def tts_health():
 
 @app.post("/api/tts")
 async def tts(request: TTSRequest):
-    if not APP_ID or not ACCESS_TOKEN or not RESOURCE_ID:
-        raise HTTPException(status_code=500, detail="Missing Environment Variables (APP_ID, ACCESS_TOKEN, RESOURCE_ID)")
-
     # Prepare headers for BytePlus API
     headers = {
-        "X-Api-App-Id": APP_ID,
-        "X-Api-Access-Key": ACCESS_TOKEN,
-        "X-Api-Resource-Id": RESOURCE_ID,
+        "X-Api-App-Id": request.app_id,
+        "X-Api-Access-Key": request.access_token,
+        "X-Api-Resource-Id": request.resource_id,
         "X-Api-App-Key": "aGjiRDfUWi", # Fixed value from docs
         "Content-Type": "application/json",
         "Connection": "keep-alive"

@@ -19,6 +19,9 @@ export default function Home() {
   const [emotion, setEmotion] = useState<string>("neutral");
   const [emotionIntensity, setEmotionIntensity] = useState<number>(4.0);
   const [loudness, setLoudness] = useState<number>(1.0);
+  const [appId, setAppId] = useState<string>("");
+  const [accessToken, setAccessToken] = useState<string>("");
+  const [resourceId, setResourceId] = useState<string>("volc.service_type.1000009");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [duration, setDuration] = useState<number>(0);
@@ -114,6 +117,11 @@ export default function Home() {
 
   const handleGenerateMSE = async () => {
     if (!text || !selectedVoice) return;
+    if (!appId || !accessToken || !resourceId) {
+        alert("Please enter App ID, Access Token, and Resource ID.");
+        return;
+    }
+
     setIsLoading(true);
     setIsPlaying(true);
 
@@ -129,6 +137,7 @@ export default function Home() {
         try {
             const sourceBuffer = mediaSource.addSourceBuffer('audio/mpeg');
             sourceBufferRef.current = sourceBuffer;
+            queueRef.current = [];
             
             sourceBuffer.addEventListener('updateend', () => {
                 if (queueRef.current.length > 0 && !sourceBuffer.updating) {
@@ -146,9 +155,12 @@ export default function Home() {
                   speed,
                   pitch,
                   loudness,
-                  emotion,
+                  emotion: isEmotionSupported && emotion !== 'neutral' ? emotion : undefined,
                   emotion_intensity: emotionIntensity,
                   language: selectedLang,
+                  app_id: appId,
+                  access_token: accessToken,
+                  resource_id: resourceId,
                 }),
             });
 
@@ -206,6 +218,45 @@ export default function Home() {
         </p>
       </div>
       
+      {/* Credentials Section */}
+      <div className="w-full max-w-6xl z-10">
+        <div className="bg-slate-900/80 backdrop-blur-sm border border-slate-800 shadow-2xl p-6 rounded-2xl ring-1 ring-white/5">
+            <h2 className="text-xl font-semibold text-slate-200 mb-4">API Credentials</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-400">App ID</label>
+                    <input 
+                        type="text" 
+                        value={appId}
+                        onChange={(e) => setAppId(e.target.value)}
+                        placeholder="Enter App ID"
+                        className="w-full p-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all placeholder-slate-600"
+                    />
+                </div>
+                <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-400">Access Token</label>
+                    <input 
+                        type="password" 
+                        value={accessToken}
+                        onChange={(e) => setAccessToken(e.target.value)}
+                        placeholder="Enter Access Token"
+                        className="w-full p-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all placeholder-slate-600"
+                    />
+                </div>
+                <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-400">Resource ID</label>
+                    <input 
+                        type="text" 
+                        value={resourceId}
+                        onChange={(e) => setResourceId(e.target.value)}
+                        placeholder="volc.service_type.1000009"
+                        className="w-full p-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all placeholder-slate-600"
+                    />
+                </div>
+            </div>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-6xl z-10">
         {/* Controls */}
         <div className="bg-slate-900/80 backdrop-blur-sm border border-slate-800 shadow-2xl p-8 rounded-2xl ring-1 ring-white/5">
